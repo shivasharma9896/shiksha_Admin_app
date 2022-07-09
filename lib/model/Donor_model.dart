@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class DonorModel{
+  final CollectionReference profilelist= FirebaseFirestore.instance.collection('Donor');
+
   String? uid;
   String? name;
   String? email;
@@ -48,6 +52,22 @@ class DonorModel{
       'aadharurl': aadharurl,
       'dob': dob
     };
+  }
+  Future getTotalDonorList()async{
+    List donorlist=[];
+    try{
+      await profilelist.get().then((querySnapshot){
+        querySnapshot.docs.forEach((element){
+          donorlist.add(element.data());
+          //print(element.data);
+        });
+      });
+      return donorlist;
+    }
+    catch(e){
+      print(e.toString());
+      return null;
+    }
   }
 
 }

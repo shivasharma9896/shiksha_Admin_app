@@ -71,6 +71,22 @@ class StudentModel{
       return null;
     }
   }
+  Future getTotalStudentList()async{
+    List studentlist=[];
+    try{
+      await profilelist.get().then((querySnapshot){
+        querySnapshot.docs.forEach((element){
+          studentlist.add(element.data());
+          //print(element.data);
+        });
+      });
+      return studentlist;
+    }
+    catch(e){
+      print(e.toString());
+      return null;
+    }
+  }
   //Sending data to firebase
   Map<String, dynamic> toMap(){
     return{

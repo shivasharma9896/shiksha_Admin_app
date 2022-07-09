@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shiksha_admin_app/constants.dart';
-class History_Profile_Card extends StatefulWidget {
-  const History_Profile_Card({Key? key}) : super(key: key);
-
+class HistoryCard extends StatefulWidget {
+  const HistoryCard({Key? key, required this.dlist}) : super(key: key);
+  final Map<String,dynamic> dlist;
   @override
-  State<History_Profile_Card> createState() => _History_Profile_CardState();
+  State<HistoryCard> createState() => _HistoryCardState();
 }
 
-class _History_Profile_CardState extends State<History_Profile_Card> {
+class _HistoryCardState extends State<HistoryCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,16 +27,16 @@ class _History_Profile_CardState extends State<History_Profile_Card> {
               Column(
                 children: [
                   SizedBox(height: 13,),
-                  const Text("Donor Name : Kendal Jenner",style:ContainerData),
+                   Text("Donor Name : "+widget.dlist['DonorName'],style:ContainerData),
                   const SizedBox(height: 15,),
                   Row(
-                    children: const [
+                    children:  [
                       Text("Amount Donated : ", style: ContainerHeading),
-                      Text("Rs 50,000"),
+                      Text(widget.dlist['DonatedAmount']),
                     ],
                   ),
                   const SizedBox(height: 15,),
-                  const Text("Student Name : Kendal Jenner",style:ContainerData),
+                   Text("Student Name : "+widget.dlist['StudentName'],style:ContainerData),
 
                 ],
               ),

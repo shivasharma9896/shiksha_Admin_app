@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/History_Donation_Card.dart';
 import 'AdminCurrentPage.dart';
 import 'DonationHistoryPage.dart';
 import 'ManageStudentPage.dart';
@@ -14,9 +15,9 @@ class AdminHome extends StatefulWidget {
 class _AdminHomeState extends State<AdminHome> {
   int currentIndex=0;
   final screens=[
-    const AdminCurrentPage(),
+     AdminCurrentPage(),
      ManageStudentPage(),
-    const History_Page(),
+     HistoryPage(),
   ];
   @override
   Widget build(BuildContext context) {
