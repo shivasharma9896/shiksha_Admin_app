@@ -1,12 +1,14 @@
 import 'dart:core';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shiksha_admin_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ViewStudent_Page  extends StatefulWidget {
-
-  const ViewStudent_Page ({Key? key}) : super(key: key);
+  final Map<String,dynamic> slist;
+  const ViewStudent_Page ({Key? key, required this.slist}) : super(key: key);
 
   @override
   State<ViewStudent_Page> createState() => _ViewStudent_Page();
@@ -14,23 +16,7 @@ class ViewStudent_Page  extends StatefulWidget {
 
 class _ViewStudent_Page extends State<ViewStudent_Page> {
   final _auth=FirebaseAuth.instance;
-  String name="Kendal Jenner";
-  String dob="12/10/1989";
-  String age="23";
-  String phoneNumber="900695306";
-  String city="West Hollywood, CA";
-  String degree="MCA";
-  String college="VIT Bhopal";
-  String sscName="Birla international school";
-  String sscBoar="CBSE";
-  String sscPassingYear="1999";
-  String sscPercentage="90%";
-  String colName="St.Xavier's College";
-  String colUni="Gujarat University";
-  String colPassingYear="2010";
-  String colPercentage="70%";
-  int tAmount=100000;
-  int rAmount=50000;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +26,10 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
         physics: const BouncingScrollPhysics(),
         children: [
           const SizedBox(height: 50),
-          const CircleAvatar(
+           CircleAvatar(
             minRadius: 60,
             maxRadius: 70,
-            backgroundImage: AssetImage('assets/images/profile.jpg'),
+            backgroundImage: NetworkImage(widget.slist['photourl'].toString()),
           ),
           const SizedBox(height: 24,),
           const Text("Personal Information",style: bigTextGreenHeading,),
@@ -58,7 +44,7 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text("Name : ",style: bigTextGreenHeading,),
-                    Text(name,style: mainBlackHeading,),
+                    Text(widget.slist['name'],style: mainBlackHeading,),
                   ],
                 ),
                 const SizedBox(height: 24),
@@ -66,10 +52,8 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text("DOB : ",style: bigTextGreenHeading,),
-                    Text(dob,style: mainBlackHeading,),
+                    Text(widget.slist['dob'],style: mainBlackHeading,),
                     SizedBox(width: 30,),
-                    const Text("Age : ",style: bigTextGreenHeading,),
-                    Text(age,style: mainBlackHeading,),
                   ],
                 ),
 
@@ -78,7 +62,7 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text("Phone Number : ",style: bigTextGreenHeading,),
-                    Text(phoneNumber,style: mainBlackHeading,),
+                    Text(widget.slist['phonenum'],style: mainBlackHeading,),
                   ],
                 ),
 
@@ -86,8 +70,8 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text("City : ",style: bigTextGreenHeading,),
-                    Text(name,style: mainBlackHeading,),
+                    const Text("Address : ",style: bigTextGreenHeading,),
+                    Text(widget.slist['address'],style: mainBlackHeading,),
                   ],
                 ),
                 const SizedBox(height: 24),
@@ -112,7 +96,7 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                       direction: Axis.vertical, //Vertical || Horizontal
                       children: <Widget>[
                         const Text("School Name : ",style: bigTextGreenHeading,),
-                        Text(sscName,style: mainBlackHeading,),
+                        Text(widget.slist['highschoolcollegename'],style: mainBlackHeading,),
                       ],
                     ),
                   ],
@@ -123,7 +107,7 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text("Board : ",style: bigTextGreenHeading,),
-                    Text(sscBoar,style: mainBlackHeading,),
+                    Text(widget.slist['highschoolboard'],style: mainBlackHeading,),
                   ],
                 ),
 
@@ -131,16 +115,8 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text("Passing Year : ",style: bigTextGreenHeading,),
-                    Text(sscPassingYear,style: mainBlackHeading,),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
                     const Text("Percenetage : ",style: bigTextGreenHeading,),
-                    Text(sscPercentage,style: mainBlackHeading,),
+                    Text(widget.slist['highschoolpercent'],style: mainBlackHeading,),
                   ],
                 ),
 
@@ -154,7 +130,7 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                       direction: Axis.vertical, //Vertical || Horizontal
                       children: <Widget>[
                         const Text("School Name : ",style: bigTextGreenHeading,),
-                        Text(sscName,style: mainBlackHeading,),
+                        Text(widget.slist['intermediatecollegename'],style: mainBlackHeading,),
                       ],
                     ),
                   ],
@@ -165,75 +141,68 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text("Board : ",style: bigTextGreenHeading,),
-                    Text(sscBoar,style: mainBlackHeading,),
+                    Text(widget.slist['intermediateboard'],style: mainBlackHeading,),
                   ],
                 ),
 
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Text("Passing Year : ",style: bigTextGreenHeading,),
-                    Text(sscPassingYear,style: mainBlackHeading,),
-                  ],
-                ),
+
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text("Percenetage : ",style: bigTextGreenHeading,),
-                    Text(sscPercentage,style: mainBlackHeading,),
+                    Text(widget.slist['intermediatepercent'],style: mainBlackHeading,),
                   ],
                 ),
                 const SizedBox(height: 24,),
-                const Text("UG Details",style: headingInCard,),
-                const SizedBox(height: 24,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Wrap(
-                      direction: Axis.vertical, //Vertical || Horizontal
-                      children: <Widget>[
-                        const Text("College Name : ",style: bigTextGreenHeading,),
-                        Text(colName,style: mainBlackHeading,),
-                      ],
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Text("University : ",style: bigTextGreenHeading,),
-                    Text(colUni,style: mainBlackHeading,),
-                  ],
-                ),
-
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Text("Passing Year : ",style: bigTextGreenHeading,),
-                    Text(colPassingYear,style: mainBlackHeading,),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Text("Percenetage : ",style: bigTextGreenHeading,),
-                    Text(colPercentage,style: mainBlackHeading,),
-                  ],
-                ),
-                const SizedBox(height: 24),
+                // const Text("UG Details",style: headingInCard,),
+                // const SizedBox(height: 24,),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
+                //     Wrap(
+                //       direction: Axis.vertical, //Vertical || Horizontal
+                //       children: <Widget>[
+                //         const Text("College Name : ",style: bigTextGreenHeading,),
+                //         Text(colName,style: mainBlackHeading,),
+                //       ],
+                //     ),
+                //   ],
+                // ),
+                //
+                // const SizedBox(height: 24),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
+                //     const Text("University : ",style: bigTextGreenHeading,),
+                //     Text(colUni,style: mainBlackHeading,),
+                //   ],
+                // ),
+                //
+                // const SizedBox(height: 24),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
+                //     const Text("Passing Year : ",style: bigTextGreenHeading,),
+                //     Text(colPassingYear,style: mainBlackHeading,),
+                //   ],
+                // ),
+                // const SizedBox(height: 24),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
+                //     const Text("Percenetage : ",style: bigTextGreenHeading,),
+                //     Text(colPercentage,style: mainBlackHeading,),
+                //   ],
+                // ),
+                // const SizedBox(height: 24),
               ],
             ),
           ),
           const SizedBox(height: 24,),
           GestureDetector(
             onTap: (){
-              const imageProvider = AssetImage('assets/images/sop.jpg');
+               var imageProvider = NetworkImage(widget.slist['signurl'].toString());
               showImageViewer(context, imageProvider, onViewerDismissed: () {
                 print("dismissed");
               });
@@ -251,7 +220,7 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
           ),
           GestureDetector(
             onTap: (){
-              const imageProvider = AssetImage('assets/images/bon.jpg');
+               var imageProvider = NetworkImage(widget.slist['aadharurl'].toString());
               showImageViewer(context, imageProvider, onViewerDismissed: () {
                 print("dismissed");
               });
@@ -272,7 +241,10 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(onPressed: (){},
+              ElevatedButton(onPressed: (){
+                var db = FirebaseFirestore.instance;
+                db.collection("Student").doc(widget.slist['uid']).update({'status': "approved"});
+                Navigator.pop(context);             },
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFFFFE9EF),
                   shape: RoundedRectangleBorder(
@@ -290,7 +262,11 @@ class _ViewStudent_Page extends State<ViewStudent_Page> {
                 ),
               ),
               SizedBox(width: 20,),
-              ElevatedButton(onPressed: (){},
+              ElevatedButton(onPressed: (){
+                var db = FirebaseFirestore.instance;
+                db.collection("Student").doc(widget.slist['uid']).update({'status': "blocked"});
+                Navigator.pop(context);
+              },
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFFFFE9EF),
                   shape: RoundedRectangleBorder(

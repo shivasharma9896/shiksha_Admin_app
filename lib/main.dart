@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) =>  const AdminHome(),
         // '/donation-history':(context) =>  const StudentHome(),
         // '/donation-details':(context) =>  const StudentHome(),
-        // '/student-manage': (context) =>  const DonerViewStudent_Page(),
-        '/student-profile': (context) =>  const ViewStudent_Page(),
+        // '/student-manage': (context) =>   DonerViewStudent_Page(),
+        //'/student-profile': (context) =>   ViewStudent_Page(slist: {},),
       },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

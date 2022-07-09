@@ -1,11 +1,12 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shiksha_admin_app/model/Student_model.dart';
 import 'package:shiksha_admin_app/widget/Profile_card.dart';
 
 class ManageStudentPage extends StatefulWidget {
 
-  const ManageStudentPage({Key? key}) : super(key: key);
+  ManageStudentPage({Key? key}) : super(key: key);
 
   @override
   State<ManageStudentPage> createState() => _ManageStudentPage();
@@ -14,15 +15,27 @@ class ManageStudentPage extends StatefulWidget {
 class _ManageStudentPage extends State<ManageStudentPage> {
   final _auth = FirebaseAuth.instance;
   late User loggedUser;
-
+  List studentProfileList=[];
   @override
   void initState() {
     super.initState();
     getCurrentUser();
+    fetchStudentList();
     WidgetsBinding.instance
         .addPostFrameCallback((_) => (context));
   }
-
+  Future<List> fetchStudentList()async{
+  dynamic resultant=await StudentModel().getStudentList();
+  if(resultant==null){
+    print("unable to retrieve");
+  }
+  else{
+    setState((){
+      studentProfileList=resultant;
+    });
+  }
+  return studentProfileList;
+  }
 
   void getCurrentUser() async {
     try {
@@ -40,26 +53,10 @@ class _ManageStudentPage extends State<ManageStudentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-            children: [
-              Container(
-                width: 400.0,
-                height: 60.0,
-                decoration: const BoxDecoration(
-                  color: Colors.lime,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10)),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Search_Profile_Card(),
-              const Search_Profile_Card(),
-              const Search_Profile_Card(),
-              const Search_Profile_Card(),
-            ]
-        ),
-      ),
-    );
+      body:  Container(
+               child: ListView.builder(itemCount: studentProfileList.length,itemBuilder: (context,index){
+                 return Search_Profile_Card(slist: studentProfileList[index],);
+               })));
   }
 }
+

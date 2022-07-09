@@ -1,8 +1,13 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:shiksha_admin_app/constants.dart';
+import 'package:shiksha_admin_app/model/Student_model.dart';
+import 'package:shiksha_admin_app/pages/ViewStudentDetailsPage.dart';
 class Search_Profile_Card extends StatefulWidget {
-  const Search_Profile_Card({Key? key}) : super(key: key);
+   Search_Profile_Card( {Key? key, required this.slist,  }) : super(key: key);
+  final Map<String,dynamic> slist;
 
   @override
   State<Search_Profile_Card> createState() => _Search_Profile_CardState();
@@ -13,7 +18,8 @@ class _Search_Profile_CardState extends State<Search_Profile_Card> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, '/student-profile');
+        //Navigator.pushNamed(context, '/student-profile');
+        Navigator.push(this.context, MaterialPageRoute(builder: (context) => ViewStudent_Page(slist: widget.slist,)), );
       },
       child: Container(
         margin: const EdgeInsets.all(15),
@@ -28,32 +34,26 @@ class _Search_Profile_CardState extends State<Search_Profile_Card> {
               Row(
                 children:  [
                   const SizedBox(width: 20,),
-                  const CircleAvatar(
+                   CircleAvatar(
                         minRadius: 30,
                         maxRadius: 40,
-                        backgroundImage: AssetImage('assets/images/profile.jpg'),
+                        backgroundImage: NetworkImage(widget.slist['photourl']),
                   ),
                   const SizedBox(width: 70,),
                   Column(
                     children: [
-                      const Text("Kendal Jenner",style:mainBlackHeading),
+                       Text(widget.slist['name'],style:mainBlackHeading),
                       const SizedBox(height: 15,),
                       Row(
-                        children: const [
-                          Text("Qualification : ",style:smallBlackHeading),
-                          Text("BCA"),
-                        ],
-                      ),
-                      Row(
-                        children: const [
+                        children:  [
                           Text("Applied For : ",style: smallBlackHeading),
-                          Text("BCA"),
+                          Text(widget.slist['appFor']),
                         ],
                       ),
                       Row(
-                        children: const [
+                        children:  [
                           Text("Aid Amount : ", style: smallBlackHeading),
-                          Text("Rs. 1,00,0000"),
+                          Text(widget.slist['amountReq'].toString()),
                         ],
                       )
                     ],

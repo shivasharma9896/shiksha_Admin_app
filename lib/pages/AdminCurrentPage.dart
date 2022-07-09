@@ -32,9 +32,9 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
             Row(
               children: [
 
-                Expanded(child: Container(
+                 Container(
                   height: 140,
-                  width: double.infinity,
+                  width: 160,
                   margin: const EdgeInsets.all(10),
                   decoration: ContainerDecor,
                   child: Column(
@@ -45,10 +45,10 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
                       Center(child: Text("${registeredDonors}",style: ContainerData,)),
                     ],
                   )
-                ),),
-                Expanded(child: Container(
+                ),
+                 Container(
                   height: 140,
-                  width: double.infinity,
+                  width: 160,
                   margin: const EdgeInsets.all(10),
                   decoration: ContainerDecor,
                   child: Column(
@@ -59,15 +59,15 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
                       Center(child: Text("${registeredStudents}",style: ContainerData,)),
                     ],
                   )
-                ),),
+                ),
               ],
             ),
            SizedBox(height: 20,),
            Row(
              children: [
-               Expanded(child: Container(
+               Container(
                  height: 140,
-                 width: double.infinity,
+                 width: 160,
                  margin: const EdgeInsets.all(10),
                  decoration: ContainerDecor,
                  child: Column(
@@ -78,10 +78,10 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
                      Center(child: Text("${DonationsTodayCount}",style: ContainerData,)),
                    ],
                  )
-               ),),
-               Expanded(child: Container(
+               ),
+               Container(
                  height: 140,
-                 width: double.infinity,
+                 width: 160,
                  margin: const EdgeInsets.all(10),
                  decoration: ContainerDecor,
                  child: Column(
@@ -92,14 +92,14 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
                      Center(child: Text("Rs.${DonationsTodayAmount}",style: ContainerData,)),
                    ],
                  )
-               ),),
+               ),
              ],
            ),
             SizedBox(height: 20,),
 
-            Expanded(child: Container(
+            Container(
               height: 210,
-              width: double.infinity,
+              width: 320,
               margin: const EdgeInsets.all(10),
               decoration: ContainerDecor,
               child:  Column(
@@ -116,7 +116,7 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
 
                 ],
               ),
-            ),),
+            ),
           ]
       ),
     );

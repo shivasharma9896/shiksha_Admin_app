@@ -15,7 +15,7 @@ class _AdminHomeState extends State<AdminHome> {
   int currentIndex=0;
   final screens=[
     const AdminCurrentPage(),
-    const ManageStudentPage(),
+     ManageStudentPage(),
     const History_Page(),
   ];
   @override
