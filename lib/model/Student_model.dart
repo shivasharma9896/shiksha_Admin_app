@@ -58,12 +58,14 @@ class StudentModel{
   Future getStudentList()async{
     List studentlist=[];
     try{
-      await profilelist.where('status',isEqualTo: "pending").get().then((querySnapshot){
-        querySnapshot.docs.forEach((element){
-          studentlist.add(element.data());
-          //print(element.data);
-        });
-      });
+      // await profilelist.where('status',isEqualTo: "pending").get().then((querySnapshot){
+      //   querySnapshot.docs.forEach((element){
+      //     studentlist.add(element.data());
+      //     //print(element.data);
+      //   });
+      // });
+
+
       return studentlist;
     }
     catch(e){

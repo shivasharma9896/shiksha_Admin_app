@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shiksha_admin_app/model/Student_model.dart';
@@ -14,49 +15,42 @@ class ManageStudentPage extends StatefulWidget {
 
 class _ManageStudentPage extends State<ManageStudentPage> {
   final _auth = FirebaseAuth.instance;
-  late User loggedUser;
-  List studentProfileList=[];
+  FirebaseFirestore _firestore=FirebaseFirestore.instance;
   @override
   void initState() {
     super.initState();
-    getCurrentUser();
-    fetchStudentList();
     WidgetsBinding.instance
         .addPostFrameCallback((_) => (context));
   }
-  Future<List> fetchStudentList()async{
-  dynamic resultant=await StudentModel().getStudentList();
-  if(resultant==null){
-    print("unable to retrieve");
-  }
-  else{
-    setState((){
-      studentProfileList=resultant;
-    });
-  }
-  return studentProfileList;
-  }
 
-  void getCurrentUser() async {
-    try {
-      final user = _auth.currentUser!;
-      loggedUser = user;
-      print("user email");
-      print(loggedUser.email);
-    }
-    catch (e) {
-      print(e);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body:  Container(
-               child: ListView.builder(itemCount: studentProfileList.length,itemBuilder: (context,index){
-                 return Search_Profile_Card(slist: studentProfileList[index],);
-               })));
+       body:  StreamBuilder(
+         stream: _firestore.collection("Student").where('status',isEqualTo: "pending").snapshots(),
+         builder: (context,snapshot){
+           if(!snapshot.hasData){
+             return Center(
+               child: CircularProgressIndicator(
+                 backgroundColor: Colors.lightBlueAccent,
+               ),
+             );
+           }
+           final messages=snapshot.data!.docs;
+            List<Search_Profile_Card> studentlist=[];
+           for (var message in messages){
+             Map<String,dynamic> student=message.data();
+             studentlist.add(Search_Profile_Card(slist: student));
+           }
+           return ListView(
+             padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+             children: studentlist,
+           );
+         },
+       )
+        );
   }
 }
 

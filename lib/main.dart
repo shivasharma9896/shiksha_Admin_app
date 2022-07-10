@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shiksha_admin_app/pages/ManageStudentPage.dart';
 import 'pages/Login_Page.dart';
 import 'pages/ViewStudentDetailsPage.dart';
 import 'pages/Home_Page.dart';
