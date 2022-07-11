@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:shiksha_admin_app/pages/ManageStudentPage.dart';
 import 'pages/Login_Page.dart';
-import 'pages/ViewStudentDetailsPage.dart';
 import 'pages/Home_Page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,10 +21,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) =>  const Login_Page(),
         '/home': (context) =>  const AdminHome(),
-        // '/donation-history':(context) =>  const StudentHome(),
-        // '/donation-details':(context) =>  const StudentHome(),
-        // '/student-manage': (context) =>   DonerViewStudent_Page(),
-        //'/student-profile': (context) =>   ViewStudent_Page(slist: {},),
       },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

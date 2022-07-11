@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:shiksha_admin_app/constants.dart';
-import 'package:shiksha_admin_app/model/Student_model.dart';
 import 'package:shiksha_admin_app/pages/ViewStudentDetailsPage.dart';
 class Search_Profile_Card extends StatefulWidget {
    Search_Profile_Card( {Key? key, required this.slist,  }) : super(key: key);
@@ -19,7 +15,6 @@ class _Search_Profile_CardState extends State<Search_Profile_Card> {
     return GestureDetector(
       onTap: (){
         //Navigator.pushNamed(context, '/student-profile');
-        Navigator.push(this.context, MaterialPageRoute(builder: (context) => ViewStudent_Page(slist: widget.slist,)), );
       },
       child: Container(
         margin: const EdgeInsets.all(15),
@@ -64,7 +59,9 @@ class _Search_Profile_CardState extends State<Search_Profile_Card> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(onPressed: (){},
+                  ElevatedButton(onPressed: (){
+                    Navigator.push(this.context, MaterialPageRoute(builder: (context) => ViewStudent_Page(slist: widget.slist,)), );
+                  },
                       style: ElevatedButton.styleFrom(
                         primary: const Color(0xFFFFE9EF),
                         shape: RoundedRectangleBorder(
@@ -73,7 +70,7 @@ class _Search_Profile_CardState extends State<Search_Profile_Card> {
                       ),
                       child: const Padding(
                         padding: EdgeInsets.all(10),
-                        child:  Text('Approve',
+                        child:  Text('Check Profile',
                           style: TextStyle(
                             color: Colors.green,
                             fontSize: 20,
@@ -81,24 +78,6 @@ class _Search_Profile_CardState extends State<Search_Profile_Card> {
                         ),
                       ),
                     ),
-                  SizedBox(width: 20,),
-                  ElevatedButton(onPressed: (){},
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFFFFE9EF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10),
-                      child:  Text('Block',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ],

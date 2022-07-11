@@ -2,7 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shiksha_admin_app/model/Student_model.dart';
 import 'package:shiksha_admin_app/widget/Profile_card.dart';
 
 class ManageStudentPage extends StatefulWidget {
