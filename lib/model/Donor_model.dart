@@ -35,7 +35,21 @@ class DonorModel{
       dob: map['dob']
     );
   }
-
+  Future getDoner(String em)async{
+    List donor=[];
+    try{
+      await profilelist.where('email',isEqualTo: em).get().then((querySnapshot){
+        querySnapshot.docs.forEach((element){
+          donor.add(element.data());
+        });
+      });
+      return donor;
+    }
+    catch(e){
+      print(e.toString());
+      return null;
+    }
+  }
   //Sending data to firebase
   Map<String, dynamic> toMap(){
     return{

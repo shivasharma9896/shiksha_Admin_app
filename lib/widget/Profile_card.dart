@@ -34,7 +34,7 @@ class _Search_Profile_CardState extends State<Search_Profile_Card> {
                         maxRadius: 40,
                         backgroundImage: NetworkImage(widget.slist['photourl']),
                   ),
-                  const SizedBox(width: 70,),
+                  const SizedBox(width: 40,),
                   Column(
                     children: [
                        Text(widget.slist['name'],style:mainBlackHeading),

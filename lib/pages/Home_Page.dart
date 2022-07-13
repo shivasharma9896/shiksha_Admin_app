@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widget/History_Donation_Card.dart';
 import 'AdminCurrentPage.dart';
 import 'DonationHistoryPage.dart';
 import 'ManageStudentPage.dart';
@@ -37,7 +36,7 @@ class _AdminHomeState extends State<AdminHome> {
             label: 'Manage Student',
           ),
           BottomNavigationBarItem(
-            icon: Icon(LineIcons.user),
+            icon: Icon(Icons.currency_rupee),
             label: 'Donation History',
           ),
         ],

@@ -89,6 +89,21 @@ class StudentModel{
       return null;
     }
   }
+  Future getStudent(String em)async{
+    List student=[];
+    try{
+      await profilelist.where('email',isEqualTo: em).get().then((querySnapshot){
+        querySnapshot.docs.forEach((element){
+          student.add(element.data());
+        });
+      });
+      return student;
+    }
+    catch(e){
+      print(e.toString());
+      return null;
+    }
+  }
   //Sending data to firebase
   Map<String, dynamic> toMap(){
     return{

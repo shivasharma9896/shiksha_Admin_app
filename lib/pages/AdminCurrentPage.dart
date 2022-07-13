@@ -1,6 +1,5 @@
 import 'dart:core';
-import 'dart:core';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shiksha_admin_app/constants.dart';
 import 'package:shiksha_admin_app/model/Donor_model.dart';
@@ -99,15 +98,33 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    final _auth=FirebaseAuth.instance;
     return Scaffold(
       body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           physics: const BouncingScrollPhysics(),
           children: [
-            const SizedBox(height: 100),
-            Text("Hola!  Admin ",style: bigTextGreenHeading),
             const SizedBox(height: 50),
+            Expanded(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        FloatingActionButton(onPressed: (){
+                          _auth.signOut();
+                          Navigator.pop(context);
+                        },child: Icon(Icons.logout_rounded),),
+                      ],
+                    ),
+                  ),
+                )
+            ),
+            const SizedBox(height: 20),
+            Text("Hola!  Admin ",style: bigTextGreenHeading),
+            const SizedBox(height: 20),
 
             Row(
               children: [
