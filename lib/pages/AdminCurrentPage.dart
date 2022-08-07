@@ -98,15 +98,15 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size=MediaQuery.of(context).size;
     final _auth=FirebaseAuth.instance;
     return Scaffold(
       body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           physics: const BouncingScrollPhysics(),
           children: [
-            const SizedBox(height: 50),
-            Expanded(
-                child: Container(
+            SizedBox(height: size.height*0.05,),
+                Container(
                   width: MediaQuery.of(context).size.width,
                   child: Align(
                     alignment: Alignment.topRight,
@@ -120,7 +120,6 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
                       ],
                     ),
                   ),
-                )
             ),
             const SizedBox(height: 20),
             Text("Hola!  Admin ",style: bigTextGreenHeading),
@@ -131,8 +130,8 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
 
                  Container(
                   height: 140,
-                  width: 160,
-                  margin: const EdgeInsets.all(10),
+                  width: size.width*0.4,
+                  margin: EdgeInsets.all(size.width*0.03),
                   decoration: ContainerDecor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,8 +144,8 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
                 ),
                  Container(
                   height: 140,
-                  width: 160,
-                  margin: const EdgeInsets.all(10),
+                  width: size.width*0.4,
+                  margin:  EdgeInsets.all(size.width*0.03),
                   decoration: ContainerDecor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -164,8 +163,8 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
              children: [
                Container(
                  height: 140,
-                 width: 160,
-                 margin: const EdgeInsets.all(10),
+                 width: size.width*0.4,
+                 margin:  EdgeInsets.all(size.width*0.03),
                  decoration: ContainerDecor,
                  child: Column(
                    crossAxisAlignment: CrossAxisAlignment.center,
@@ -178,8 +177,8 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
                ),
                Container(
                  height: 140,
-                 width: 160,
-                 margin: const EdgeInsets.all(10),
+                 width: size.width*0.41,
+                 margin:  EdgeInsets.all(size.width*0.03),
                  decoration: ContainerDecor,
                  child: Column(
                    crossAxisAlignment: CrossAxisAlignment.center,
@@ -196,7 +195,7 @@ class _AdminCurrentPageState extends State<AdminCurrentPage> {
 
             Container(
               height: 210,
-              width: 320,
+              width: size.width*0.8,
               margin: const EdgeInsets.all(10),
               decoration: ContainerDecor,
               child:  Column(

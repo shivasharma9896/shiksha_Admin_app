@@ -52,6 +52,7 @@ class _Login_PageState extends State<Login_Page> {
   }
   @override
   Widget build(BuildContext context) {
+    final size=MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body:  ModalProgressHUD (
@@ -61,12 +62,11 @@ class _Login_PageState extends State<Login_Page> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 150,),
+              SizedBox(height: size.height*0.1,),
               Center(
-
                 child: Container(
-                  width: 200,
-                  height: 200,
+                  width: size.width*0.6,
+                  height: size.height*0.3,
                   child: Image.asset(logo),
                 ) ,
                 ),
@@ -76,7 +76,7 @@ class _Login_PageState extends State<Login_Page> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(50),
+                padding:  EdgeInsets.all(size.height*0.05),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -154,6 +154,7 @@ class _Login_PageState extends State<Login_Page> {
                         ),
                       ],
                     ),
+                    SizedBox(height: size.height*0.04,),
                     Center(
                       child:ElevatedButton(onPressed: () async{
                         setState((){
@@ -212,8 +213,8 @@ class _Login_PageState extends State<Login_Page> {
                   borderRadius: BorderRadius.circular(10.0),
                   color: Colors.blueGrey,
                 ),
-                width: 400.0,
-                height: 73.0,
+                width: size.width,
+                height: size.height*0.06,
                 alignment: Alignment.center, // align your child's position.
               ),
             ],
